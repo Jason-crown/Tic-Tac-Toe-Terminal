@@ -37,11 +37,10 @@ void handle_input(Board *game_sourse, Player *p1, Player *p2, char input)
         printf("\033[11;14H");
         *game_sourse->session = true; 
         print_to_terminal(game_sourse, p1, p2);    
-          
         break;
     // Select and Place //
     case '\r':
-        if (*game_sourse->session){
+        if (*game_sourse->session) {
         select_square(game_sourse, p1, p2);
         game_state(game_sourse, p1, p2);
         }

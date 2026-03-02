@@ -6,13 +6,16 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdarg.h>
+#include <ctype.h>
 #include <math.h>
 //#include <conio.h> // Im not using this yet
 // I should add proper error checking... with errno.h - perror()
 
 #ifdef _WIN32
     #include <conio.h>  // Use the native Windows library
+	#define WINDOWS 'T'
 #else
+	#define WINDOWS 'F'
     #include "posix_input.h" // Use our custom UNIX definition for Windows equivalent functions
 #endif
 
@@ -63,11 +66,11 @@
 #define ANSI_COLOR_WHITE_BRIGHT_BG   "\x1b[107m"
 
 typedef struct Colors{
-	char color_list[COLOR_COMPLEXITY][COLOR_AMOUNT];
-	char normal[COLOR_COMPLEXITY][COLOR_AMOUNT];
-	char bright[COLOR_COMPLEXITY][COLOR_AMOUNT];
-	char background[COLOR_COMPLEXITY][COLOR_AMOUNT];
-	char bright_background[COLOR_COMPLEXITY][COLOR_AMOUNT];
+	char color_list[COLOR_AMOUNT][COLOR_COMPLEXITY];
+	char normal[COLOR_AMOUNT][COLOR_COMPLEXITY];
+	char bright[COLOR_AMOUNT][COLOR_COMPLEXITY];
+	char background[COLOR_AMOUNT][COLOR_COMPLEXITY];
+	char bright_background[COLOR_AMOUNT][COLOR_COMPLEXITY];
 }Colors;
 
 typedef struct Player{
@@ -227,6 +230,21 @@ Returns:
 */
 void change_character_color(Board *game_sourse, Player *p1, Player *p2);
 
+
+/*
+Name: 
+	change_color
+Purpose:
+	Orginizes the setting of colors of a set deppending of the name or character given.
+Parameters:
+	game_sourse (typedef Struct Board*) ~ Holds all related feild to the board.
+	p1 (typedef Struct Player*) ~ Holds all related feild to the player one.
+	p2 (typedef Struct Player*) ~ Holds all related feild to the player two.
+	target (char) ~ A character for the set of elements.
+	label (char*) ~ A name for a set of elements.
+Returns:
+	void
+*/
 void change_color(Board *game_sourse, Player *p1, Player *p2, char target, char *label);
 
 /*

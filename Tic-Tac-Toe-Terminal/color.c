@@ -20,13 +20,19 @@ void change_color(Board *game_sourse, Player *p1, Player *p2, char target, char 
 
 	// Collects color form the user //
 	do {
-        // Checks if the target is the boarder or a character 
+        char str[COLOR_COMPLEXITY];
+        // Checks if the target is the boarder or a character //
         if (target == '\0') printf("\n input the color you want for the %s \n color :", label);
         if (target != '\0') printf("\n input the color you want for %c \n color : ", target);
-
-		if(fgets(color_hash, sizeof(color_hash), stdin) == NULL) break;
+		if(fgets(color_hash, sizeof(color_hash), stdin) == NULL) break; // Color input
 		color_hash[strcspn(color_hash,"\n")] = 0; // removes the new line character
-
+        
+        // Makes color all lowercase //
+        for(int i = 0; i < COLOR_COMPLEXITY; i++) {
+            str[i] = tolower(color_hash[i]);
+        }
+        strncpy(color_hash, str, COLOR_COMPLEXITY);
+        
 	} while (strcmp(color_hash, color_validification(game_sourse ,color_hash, chosen_color)) != 0); 
     if (*game_sourse->target == *p1->character && target != *game_sourse->space) strncpy(p1->color, color_input(game_sourse, color_hash), COLOR_COMPLEXITY); 
     if (*game_sourse->target == *p2->character && target != *game_sourse->space) strncpy(p2->color, color_input(game_sourse, color_hash), COLOR_COMPLEXITY);

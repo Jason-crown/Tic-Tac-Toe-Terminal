@@ -3,13 +3,13 @@
 Colors* initialize_colors() {
 
     // List of all color inputs //
-    char* color_list[COLOR_AMOUNT] = 
+    char color_list[COLOR_AMOUNT][COLOR_COMPLEXITY] = 
     { 
         "red", 
         "yellow", 
         "green", 
         "blue", 
-        "magenta", 
+        "purplele", 
         "cyan", 
         "white" 
     };

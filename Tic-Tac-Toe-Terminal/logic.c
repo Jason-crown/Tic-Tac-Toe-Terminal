@@ -4,14 +4,7 @@ char end_logic(Board *game_sourse, Player *p1, Player *p2) {
     int tag_count = 0;
     for (int j = 0; j < *game_sourse->height; j++) {
     // initializes all of the winning checks //
-    int check_O_row = 0;
-    int check_X_row = 0;
-    int check_O_col = 0;
-    int check_X_col = 0;
-    int check_X_dia = 0;
-    int check_O_dia = 0;
-    int check_X_bia = 0;
-    int check_O_bia = 0;
+    int check_O_row = 0, check_X_row = 0, check_O_col = 0, check_X_col = 0, check_X_dia = 0, check_O_dia = 0, check_X_bia = 0, check_O_bia = 0;
     int smaller = (*game_sourse->width > *game_sourse->height) ? *game_sourse->height : *game_sourse->width;
 
         for (int i = 0; i < *game_sourse->width; i++) {
