@@ -67,10 +67,8 @@ char* color_validification(Board *game_sourse, char *color, char *chosen_color) 
 void change_color_types(Board *game_sourse, Player *p1, Player *p2) {
     printf("What type of color would you like \n (N)Normal, (B)Bright, (G)Background, (Y)Background+Bright \n Input:");
     char input = safe_input(game_sourse, p1, p2, 'I', 4, 'N', 'B', 'G', 'Y');
-    if (input == 'N') *game_sourse->color_type = 'A';
-    if (input == 'B') *game_sourse->color_type = 'B';
-    if (input == 'G') *game_sourse->color_type = 'C';
-    if (input == 'Y') *game_sourse->color_type = 'D';
+    // N = A, B = B, G = C, Y + D //
+    *game_sourse->color_type = input;
     printf("\nChange all elements to that set (Y)yes (N)no : ");
     input = safe_input(game_sourse, p1, p2, 'I', 2, 'N', 'Y');
     if (input == 'Y') {
@@ -99,9 +97,9 @@ char* aspect_change(Board *game_sourse, char* target) {
 }
 
 char* color_parse(Board *game_sourse, int index) {
-    if (*game_sourse->color_type == 'A') return game_sourse->ANSI->normal[index];
+    if (*game_sourse->color_type == 'N') return game_sourse->ANSI->normal[index];
     if (*game_sourse->color_type == 'B') return game_sourse->ANSI->bright[index];
-    if (*game_sourse->color_type == 'C') return game_sourse->ANSI->background[index];
-    if (*game_sourse->color_type == 'D') return game_sourse->ANSI->bright_background[index];
+    if (*game_sourse->color_type == 'G') return game_sourse->ANSI->background[index];
+    if (*game_sourse->color_type == 'Y') return game_sourse->ANSI->bright_background[index];
     return game_sourse->ANSI->normal[index]; // normal is the default
 }

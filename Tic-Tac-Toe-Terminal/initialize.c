@@ -9,7 +9,7 @@ Colors* initialize_colors() {
         "yellow", 
         "green", 
         "blue", 
-        "purplele", 
+        "purple", 
         "cyan", 
         "white" 
     };
