@@ -5,9 +5,7 @@ void change_character_color(Board *game_sourse, Player *p1, Player *p2) {
 	printf("choose which player \n       (%c or %c) : ", *p1->character, *p2->character);
 	char side = safe_input(game_sourse, p1, p2, 'I', 2, *p1->character, *p2->character);
 	// determine the player //
-	if (side == *p1->character || side == *p2->character) {
-        change_color(game_sourse, p1, p2, side, "Characters");
-	}
+	if (side == *p1->character || side == *p2->character) change_color(game_sourse, p1, p2, side, "Characters");
 }
 
 void change_color(Board *game_sourse, Player *p1, Player *p2, char target, char *label) {
@@ -15,8 +13,7 @@ void change_color(Board *game_sourse, Player *p1, Player *p2, char target, char 
     char color_hash[COLOR_COMPLEXITY];
     char chosen_color[COLOR_COMPLEXITY];
 
-    if (target != *game_sourse->space && target != '\0')
-	    *game_sourse->target = target;
+    if (target != *game_sourse->space && target != '\0') *game_sourse->target = target;
 
 	// Collects color form the user //
 	do {
@@ -28,9 +25,7 @@ void change_color(Board *game_sourse, Player *p1, Player *p2, char target, char 
 		color_hash[strcspn(color_hash,"\n")] = 0; // removes the new line character
         
         // Makes color all lowercase //
-        for(int i = 0; i < COLOR_COMPLEXITY; i++) {
-            str[i] = tolower(color_hash[i]);
-        }
+        for(int i = 0; i < COLOR_COMPLEXITY; i++) str[i] = tolower(color_hash[i]);
         strncpy(color_hash, str, COLOR_COMPLEXITY);
         
 	} while (strcmp(color_hash, color_validification(game_sourse ,color_hash, chosen_color)) != 0); 
@@ -57,9 +52,7 @@ char* color_input(Board *game_sourse, char *color) {
 
 char* color_validification(Board *game_sourse, char *color, char *chosen_color) {
 	for (int i = 0; i < COLOR_AMOUNT; i++) {
-		if (strncmp(color, game_sourse->ANSI->color_list[i], COLOR_COMPLEXITY) == 0) {
-			chosen_color = game_sourse->ANSI->color_list[i];
-		}
+		if (strncmp(color, game_sourse->ANSI->color_list[i], COLOR_COMPLEXITY) == 0) chosen_color = game_sourse->ANSI->color_list[i];
 	} 
 	return chosen_color;
 }
@@ -67,7 +60,6 @@ char* color_validification(Board *game_sourse, char *color, char *chosen_color) 
 void change_color_types(Board *game_sourse, Player *p1, Player *p2) {
     printf("What type of color would you like \n (N)Normal, (B)Bright, (G)Background, (Y)Background+Bright \n Input:");
     char input = safe_input(game_sourse, p1, p2, 'I', 4, 'N', 'B', 'G', 'Y');
-    // N = A, B = B, G = C, Y + D //
     *game_sourse->color_type = input;
     printf("\nChange all elements to that set (Y)yes (N)no : ");
     input = safe_input(game_sourse, p1, p2, 'I', 2, 'N', 'Y');
