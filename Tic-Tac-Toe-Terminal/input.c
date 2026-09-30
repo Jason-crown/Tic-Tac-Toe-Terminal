@@ -122,8 +122,8 @@ void change_stage(Board *game_sourse, Player *p1, Player *p2) {
 void change_spaces(Board *game_sourse, Player *p1, Player *p2) {
     printf("Input the spacing character: ");
     char new_space = safe_input(game_sourse, p1, p2, 'E', 8, *p1->character, *p2->character, '\b', '\n', '\r', '\t', '\0', '\033');
-    for (int i = 0; i < *game_sourse->width; i++) {
-        for (int j = 0; j < *game_sourse->height; j++) {
+    for (int i = 0; i < *game_sourse->height; i++) {
+        for (int j = 0; j < *game_sourse->width; j++) {
             if (game_sourse->board[i][j] == *game_sourse->space)
             game_sourse->board[i][j] = new_space;
         }

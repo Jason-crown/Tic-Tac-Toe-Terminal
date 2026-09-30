@@ -3,6 +3,7 @@ CFLAGS = -std=c99 -Wall -Wextra -pedantic
 TARGET = tic
 OBJ = main.o stage.o input.o logic.o color.o initialize.o
 EXE = tic.exe
+DESK = initialize-DESKTOP-J14I0E6.exe tic-DESKTOP-J14I0E6.exe
 
 ifeq ($(OS), Windows_NT)
 	DELETE = del
@@ -21,7 +22,7 @@ $(TARGET): $(OBJ)
 clean:
 	$(DELETE) $(OBJ) $(TARGET) 
 ifeq ($(OS), Windows_NT)	
-	$(DELETE) $(EXE)
+	$(DELETE) $(EXE) $(DESK)
 endif
 
 .PHONY: 
